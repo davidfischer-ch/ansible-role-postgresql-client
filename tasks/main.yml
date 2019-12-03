@@ -30,8 +30,10 @@
     - name: Install PostgreSQL python packages
       pip:
         name: psycopg2-binary
-        executable: pip2
+        executable: '{{ postgresql_pip_path }}'
         state: "{{ (postgresql_psycopg2_version == 'latest')|ternary('latest', omit) }}"
+        umask: '{{ postgresql_pip_umask }}'
         version: "{{ (postgresql_psycopg2_version == 'latest')|ternary(omit, postgresql_psycopg2_version) }}"
+      environment: '{{ postgresql_pip_environment }}'
   become: yes
   tags: [postgresql-client, packages]
