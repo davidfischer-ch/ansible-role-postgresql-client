@@ -1,8 +1,18 @@
+postgresql_client_dynamic_defaults:
+
+  apt:
+    postgresql_client_packages:
+      - libpq-dev
+      - 'postgresql-client-{{ postgresql_version }}'
+
+  redhat-7.*:
+    postgresql_client_packages:
+      # - libpqxx-devel
+      - rh-postgresql{{ postgresql_version|string|regex_replace('\.', '') }}-postgresql
+      - rh-postgresql{{ postgresql_version|string|regex_replace('\.', '') }}-postgresql-devel
+
 postgresql_apt_key: https://www.postgresql.org/media/keys/ACCC4CF8.asc
 postgresql_apt_distribution: '{{ ansible_distribution_release }}'
 postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ postgresql_apt_distribution }}-pgdg main'
-postgresql_client_packages:
-  - libpq-dev
-  - 'postgresql-client-{{ postgresql_version }}'
 postgresql_psycopg2_version: latest
 # postgresql_version: 9.6  # 15/08/2018

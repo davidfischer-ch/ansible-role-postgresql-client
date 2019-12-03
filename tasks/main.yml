@@ -1,6 +1,12 @@
 # Install and configure PostgreSQL client
 ---
 
+- dynamic_defaults:
+    hostvars: '{{ hostvars[inventory_hostname] }}'
+    defaults: '{{ postgresql_client_dynamic_defaults }}'
+    must_match: yes
+  tags: [postgresql-client, always]
+
 - block:
     - name: Register PostgreSQL apt key
       apt_key:
