@@ -1,0 +1,21 @@
+---
+
+- block:
+    - name: Register PostgreSQL apt key
+      apt_key:
+        url: '{{ postgresql_apt_key }}'
+        state: present
+
+    - name: Install PostgreSQL apt repository
+      apt_repository:
+        repo: '{{ postgresql_apt_repository }}'
+        filename: ansible_roles_postgresql_client
+        state: present
+        update_cache: yes
+
+    - name: Install PostgreSQL client packages
+      package:
+        name: '{{ postgresql_client_packages }}'
+        state: present
+  become: yes
+  tags: [postgresql-client, packages]  # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882

@@ -16,6 +16,8 @@ postgresql_apt_distribution: '{{ ansible_distribution_release }}'
 postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ postgresql_apt_distribution }}-pgdg main'
 # postgresql_version: 9.6  # 15/08/2018
 
+postgresql_yum_enablerepo: '{{ omit }}'
+
 postgresql_pip_path: '{{ python_pip_path|default(omit) }}'
 postgresql_pip_umask: "{{ python_pip_umask|default('022') }}"
 postgresql_pip_environment: '{{ python_pip_environment|default({}) }}'
