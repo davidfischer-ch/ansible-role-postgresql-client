@@ -18,7 +18,7 @@ postgresql_apt_repository: 'deb http://apt.postgresql.org/pub/repos/apt/ {{ post
 
 postgresql_yum_enablerepo: '{{ omit }}'
 
-postgresql_pip_path: '{{ python_pip_path|default(omit) }}'
+postgresql_pip_path: '{{ omit }}'  # Using Ansible python interpreter
 postgresql_pip_umask: "{{ python_pip_umask|default('022') }}"
 postgresql_pip_environment: '{{ python_pip_environment|default({}) }}'
 postgresql_psycopg2_version: latest
