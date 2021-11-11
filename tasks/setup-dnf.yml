@@ -1,0 +1,9 @@
+---
+
+- name: Install PostgreSQL client packages
+  yum:
+    name: '{{ postgresql_client_packages }}'
+    enablerepo: '{{ postgresql_yum_enablerepo }}'
+    state: present
+  become: yes
+  tags: [postgresql-client, packages]  # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882
