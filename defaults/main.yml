@@ -13,7 +13,6 @@ postgresql_client_dynamic_defaults:
 
   redhat-8.*:
     postgresql_client_packages:
-      # - libpqxx-devel
       - postgresql
       - postgresql-devel
 
