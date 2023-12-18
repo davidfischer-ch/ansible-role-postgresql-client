@@ -4,19 +4,21 @@
 - dynamic_defaults:
     hostvars: '{{ hostvars[inventory_hostname] }}'
     defaults: '{{ postgresql_client_dynamic_defaults }}'
-    must_match: yes
+    must_match: true
   tags: [postgresql-client, always]
 
 - block:
     - include_tasks: setup-{{ ansible_pkg_mgr }}.yml
 
     - name: Install PostgreSQL python packages for Ansible
-      pip:
+      ansible.builtin.pip:
         name: psycopg2-binary
         executable: '{{ postgresql_pip_path }}'
         state: "{{ (postgresql_psycopg2_version == 'latest')|ternary('latest', omit) }}"
         umask: '{{ postgresql_pip_umask }}'
         version: "{{ (postgresql_psycopg2_version == 'latest')|ternary(omit, postgresql_psycopg2_version) }}"
       environment: '{{ postgresql_pip_environment }}'
-  become: yes
+  become: true
   tags: [postgresql-client, packages]
+
+...

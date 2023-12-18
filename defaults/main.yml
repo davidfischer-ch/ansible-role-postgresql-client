@@ -1,3 +1,5 @@
+---
+
 postgresql_client_dynamic_defaults:
 
   apt:
@@ -28,3 +30,5 @@ postgresql_pip_path: '{{ omit }}'  # Using Ansible python interpreter
 postgresql_pip_umask: "{{ python_pip_umask|default('022') }}"
 postgresql_pip_environment: '{{ python_pip_environment|default({}) }}'
 postgresql_psycopg2_version: latest
+
+...
