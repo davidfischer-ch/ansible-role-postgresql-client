@@ -14,6 +14,7 @@
       ansible.builtin.pip:
         name: psycopg2-binary
         executable: '{{ postgresql_pip_path }}'
+        break_system_packages: '{{ postgresql_pip_break_system_packages }}'
         state: "{{ (postgresql_psycopg2_version == 'latest')|ternary('latest', omit) }}"
         umask: '{{ postgresql_pip_umask }}'
         version: "{{ (postgresql_psycopg2_version == 'latest')|ternary(omit, postgresql_psycopg2_version) }}"
